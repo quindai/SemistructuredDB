@@ -1,8 +1,39 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>db.topicos</groupId>
-  <artifactId>topiscosdb</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <name>TopicosDB</name>
-  <description>Sedna e RESTDB consulting Info</description>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>db.topicos</groupId>
+	<artifactId>topiscosdb</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>TopicosDB</name>
+	<description>Sedna e RESTDB consulting Info</description>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+	</properties>
+
+	<dependencies>
+		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.5</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/net.xqj.sedna/sedna-xqj 
+		<dependency>
+			<groupId>net.xqj.sedna</groupId>
+			<artifactId>sedna-xqj</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+
+		 https://mvnrepository.com/artifact/org.clojars.gw666/sxqj 
+		<dependency>
+			<groupId>org.clojars.gw666</groupId>
+			<artifactId>sxqj</artifactId>
+			<version>beta2</version>
+		</dependency-->
+
+	</dependencies>
 </project>
