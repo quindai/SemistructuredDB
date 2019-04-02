@@ -12,7 +12,7 @@ import java.net.URL;
 public class RestDB {
 
 	URL url;
-	HttpURLConnection conn;
+	public static HttpURLConnection conn;
 	BufferedReader br;
 	public RestDB() {
 		getAllCountries();

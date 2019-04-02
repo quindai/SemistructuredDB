@@ -1,5 +1,9 @@
 package topiscosdb.connect;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+
 import ru.ispras.sedna.driver.DatabaseManager;
 import ru.ispras.sedna.driver.DriverException;
 import ru.ispras.sedna.driver.SednaConnection;
@@ -19,7 +23,21 @@ import ru.ispras.sedna.driver.SednaStatement;
 public class Sedna {
 
 	static SednaConnection conn = null;
-	public Sedna() {
+	static SednaStatement st;
+	
+	public Sedna() throws DriverException {
+		conn = DatabaseManager.getConnection("localhost", "topicosbd", "SYSTEM", "MANAGER");
+		
+		st = conn.createStatement();
+		
+		//carrega xml no bd
+		System.out.println("Carregando dados...");
+		boolean res;
+        
+		res = st.execute("LOAD 'src/main/resources/region.xml' 'region'");
+	}
+	
+	public Sedna(boolean b) {
 		try {
 			conn = DatabaseManager.getConnection("localhost", "topicosbd", "SYSTEM", "MANAGER");
 			
@@ -27,7 +45,8 @@ public class Sedna {
 			conn.begin();
 			
 			//cria statement
-			SednaStatement st = conn.createStatement();
+			//SednaStatement 
+			st = conn.createStatement();
 			
 			//carrega xml no bd
 			System.out.println("Carregando dados...");
@@ -75,6 +94,16 @@ public class Sedna {
 			}
 	}
 	
+	public static ArrayList<String> getResults() throws DriverException {
+		 SednaSerializedResult pr = st.getSerializedResult();
+		 ArrayList<String> itens = new ArrayList<>();
+		 String item;
+		 while ((item = pr.next()) != null) {
+			 itens.add(item);
+		 }
+		 return itens;
+	}
+	
 	private void printQueryResults(SednaStatement st)
             throws DriverException {
 
@@ -89,6 +118,6 @@ public class Sedna {
         }
     }
 	public static void main(String[] args) {
-		new Sedna();
+		new Sedna(true);
 	}
 }
