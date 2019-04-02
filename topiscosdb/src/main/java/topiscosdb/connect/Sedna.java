@@ -13,15 +13,15 @@ import ru.ispras.sedna.driver.SednaStatement;
  * before run this example start db
  * on terminal:
  * > se_gov
- * > se_cdb testando
- * > se_sm testando
+ * > se_cdb topicosbd
+ * > se_sm topicosbd
  */
 public class Sedna {
 
 	static SednaConnection conn = null;
 	public Sedna() {
 		try {
-			conn = DatabaseManager.getConnection("localhost", "testando", "SYSTEM", "MANAGER");
+			conn = DatabaseManager.getConnection("localhost", "topicosbd", "SYSTEM", "MANAGER");
 			
 			//inicia transacao
 			conn.begin();
@@ -32,14 +32,6 @@ public class Sedna {
 			//carrega xml no bd
 			System.out.println("Carregando dados...");
 			boolean res;
-			
-			//remove documento se existir
-			System.out.println("Removendo documento ...");
-            res = st.execute("DROP DOCUMENT 'region'");
-            if(!res) {
-            	System.out.println("Documento removido com sucesso!");
-            } else
-            	System.out.println("Nada pra remover, continuando execucao!");
             
 			res = st.execute("LOAD 'src/main/resources/region.xml' 'region'");
 			
@@ -54,6 +46,14 @@ public class Sedna {
 			//se re eh true statement nao eh update, podemos usar objeto serializado
 			if(res) printQueryResults(st);
 			
+			//remove documento se existir
+			System.out.println("Removendo documento ...");
+            res = st.execute("DROP DOCUMENT 'region'");
+            if(!res) {
+            	System.out.println("Documento removido com sucesso!");
+            } else
+            	System.out.println("Nada pra remover, continuando execucao!");
+            
 		    conn.commit(); 
 		} catch (DriverException e) {
 			e.printStackTrace();
