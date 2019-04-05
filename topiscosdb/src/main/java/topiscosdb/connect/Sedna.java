@@ -108,22 +108,22 @@ public class Sedna {
 		//get query region
 		//res = st.execute("doc('region')/regions/*[id_region='sam']");
 		
-		res = st.execute("doc('region')/regions/*[id_region]");
+		res = st.execute("doc('region')/regions/*/id_region/text()");
 		
 		SednaSerializedResult pr = st.getSerializedResult();
 		 ArrayList<String> itens = new ArrayList<>();
 		 String item;
 		 while ((item = pr.next()) != null) {
-			 itens.add(item);
+			 itens.add(item.trim());
 		 }
 		 
 		//remove documento se existir
-			System.out.println("Removendo documento ...");
+		 System.out.println("Liberando a memoria...");
          res = st.execute("DROP DOCUMENT 'region'");
          if(!res) {
-         	System.out.println("Documento removido com sucesso!");
+         	System.out.println("Documento resgatado com sucesso!");
          } else
-         	System.out.println("Nada pra remover, continuando execucao!");
+         	System.out.println("Nada para resgatar, continuando execucao!");
          
 		 conn.commit();
 		 conn.close();
